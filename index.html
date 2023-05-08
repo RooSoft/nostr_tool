@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <h1>sign a message</h1>
+
+  <form>
+    <label for="fname">unsigned message:</label><br>
+    <input type="text" id="message" name="message"><br>
+    <button type="button" onclick="signMessage(this.form.elements[0].value)">sign</button>
+  </form>
+
+  <p>
+    Signed event:
+    <div id="signed">N/A</div>
+  </p>
+
+  <script>
+    function signMessage(message) {
+      promise = window.nostr.signEvent({
+        "kind": 1, 
+        "tags": [],
+        "created_at": Math.floor(Date.now() / 1000),
+        "content": message
+      })
+
+      promise.then(
+        (val) => document.getElementById("signed").innerText = JSON.stringify(val),
+        (err) => console.dir(err)
+      ).catch((err) => {console.dir(err)})
+    }
+
+  </script>
+</body>
+</html>
