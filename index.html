@@ -16,20 +16,16 @@
   </p>
 
   <script>
-    function signMessage(message) {
-      promise = window.nostr.signEvent({
+    async function signMessage(message) {
+      signedEvent = await window.nostr.signEvent({
         "kind": 1, 
         "tags": [],
         "created_at": Math.floor(Date.now() / 1000),
         "content": message
       })
 
-      promise.then(
-        (val) => document.getElementById("signed").innerText = JSON.stringify(val),
-        (err) => console.dir(err)
-      ).catch((err) => {console.dir(err)})
+      document.getElementById("signed").innerText = JSON.stringify(signedEvent)
     }
-
   </script>
 </body>
 </html>
