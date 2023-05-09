@@ -5,15 +5,12 @@
   <h1>sign a message</h1>
 
   <form>
-    <label for="fname">unsigned message:</label><br>
-    <input type="text" id="message" name="message"><br>
+    <textarea id="message" name="message" rows="4" cols="80"></textarea>
+    <br />
     <button type="button" onclick="signMessage(this.form.elements[0].value)">sign</button>
   </form>
 
-  <p>
-    Signed event:
-    <div id="signed">N/A</div>
-  </p>
+  <code id="signed" style="word-wrap: break-word;max-width:400px;" />
 
   <script>
     async function signMessage(message) {
